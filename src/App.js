@@ -8,6 +8,7 @@ class App extends Component {
 
         this.state = {
             users: [],
+            searchInput: '',
         }
     }
 
@@ -18,18 +19,16 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.users)
         return (
             <div className="App">
-                <div>
-                    {this.state.users.map(({ id, name, username }) => (
-                        <div key={id}>
-                            <CardList id={id} />
-                            <h1>{name}</h1>
-                            <h2>{username}</h2>
-                        </div>
-                    ))}
-                </div>
+                <input
+                    onChange={(e) =>
+                        this.setState({ searchInput: e.target.value })
+                    }
+                    type="search"
+                    placeholder="Search Monsters"
+                />
+                <CardList users={this.state.users}></CardList>
             </div>
         )
     }
